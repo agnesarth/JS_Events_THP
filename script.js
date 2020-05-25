@@ -103,4 +103,27 @@ Array.prototype.forEach.call(btnView, button => {
 ); 
 
 
-//
+//Fonctionnalité 7
+let btnLoop = document.getElementsByClassName('btn btn-secondary my-2')[0];
+console.log(btnLoop)
+let parentCard = document.getElementsByClassName('row')[1];
+console.log(parentCard)
+
+let onBtnLoopClick = function() {
+  parentCard.insertBefore(parentCard.lastElementChild, parentCard.firstElementChild)
+}
+btnLoop.addEventListener('click', onBtnLoopClick);
+
+
+//Fonctionnalité 8
+let btnLoopReverse = document.getElementsByClassName('btn btn-primary my-2')[0];
+
+let onBtnLoopReverseClick = function() {
+  btnLoopReverse.removeAttribute("href")
+  parentCard.insertBefore(parentCard.firstElementChild, parentCard.lastElementChild.nextElementSibling)
+  //lastCard.nextSibling
+}
+btnLoopReverse.addEventListener('click', onBtnLoopReverseClick);
+
+
+//Fonctionnalité 9
