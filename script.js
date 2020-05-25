@@ -1,3 +1,4 @@
+//Fonctionnalité 1
 // On commence par un petit échauffement : lorsque l'utilisateur va cliquer sur le footer (portant le tag <footer>), tu vas afficher le mot "clique" en console.
 // Maintenant on va upgrader cette première fonctionnalité : lorsque l'utilisateur va cliquer sur le footer, tu vas afficher en console "clic numéro x" avec x qui commence à 1 et s'incrémente de +1 à chaque clic.
 
@@ -12,9 +13,9 @@ let onFooterClick = function() {
 footer.addEventListener('click', onFooterClick);
 
 
+// Fonctionnalité 2
 // On va enfin faire fonctionner ce satané "Hamburger Menu" qui s'affiche depuis le début mais qui n'actionne rien quand on clique dessus
 
-// Fonctionnalité 2 : toggle burger
 let navElmt = document.getElementById('navbarHeader');
 let navTogglerElmt = document.getElementsByClassName('navbar-toggler')[0];
 let onNavbarClick = function() {
@@ -24,6 +25,7 @@ let onNavbarClick = function() {
 navTogglerElmt.addEventListener('click', onNavbarClick);
 
 
+//Fonctionnalité 3
 // À présent, on va faire cela : si on clique sur le bouton "Edit" de la première card, le texte de la card va se mettre en rouge de façon irréversible (sauf si on recharge la page). À toi de jouer !
 
 let btnEdit = document.getElementsByClassName('btn-sm btn-outline-secondary')[0];
@@ -34,6 +36,7 @@ let onBtnEditClick = function() {
 btnEdit.addEventListener('click', onBtnEditClick);
 
 
+//Fonctionnalité 4
 //On va faire quelque chose de similaire à la fonctionnalité 3 mais un peu plus complexe : si on clique sur le bouton "Edit" de la deuxième card, le texte de la card va se mettre en vert. Si on re-clique dessus, il redevient comme avant ! Tu l'as compris, il va falloir que tu cherches comment faire un "toggle" sur le style du texte. C'est plus compliqué que sur une classe.
 
 let btnEdit2 = document.getElementsByClassName('btn-sm btn-outline-secondary')[1];
@@ -52,12 +55,12 @@ let onBtnEditClick3 = function() {
 btnEdit2.addEventListener('click', onBtnEditClick2);
 
 
+//Fonctionnalité 5
 // Pour le fun, on va implémenter une fonctionnalité à la sauce ☢"nucléaire"🤯. Et comme elle est un peu dangereuse, on va la cacher…
 
 let bootstrap = document.getElementsByTagName('header')[0];
 let link = document.getElementsByTagName('link')[0];
-console.log(bootstrap)
-console.log(link)
+
 let onHeaderClick = function() {
   link.href = "";
   bootstrap.addEventListener('dblclick', onHeaderClick2);
@@ -71,17 +74,33 @@ let onHeaderClick2 = function() {
 bootstrap.addEventListener('dblclick', onHeaderClick); 
 
 
+//Fonctionnalité 6
 //T'as déjà implémenté 5 fonctionnalités d'interaction ! C'est top ! On va commencer à corser les choses.
 //La fonctionnalité sera la suivante : si un utilisateur passe sa souris sur le bouton "View" d'une card (n'importe laquelle), celle-ci va se réduire. Cela veut dire que le texte disparaît, l'image n'apparaîtra qu'à 20 % de sa taille d'origine et les boutons "Edit" / "View" restent visibles. Cette fonction sera réversible : s'il repasse sa souris, la card redevient normale !
 
-let reduceCard = document.getElementsByClassName("card-img-top")[2];
-let btnView = document.getElementsByClassName('btn btn-sm btn-success')[2];
-let removeCardText = document.getElementsByClassName('card-text')[2];
-let onBtnView = function() {
-  reduceCard.style.width = "20%"; 
-  reduceCard.style.height = "20%";
-  removeCardText.innerHTML = "";
+let btnView = document.getElementsByClassName('btn btn-sm btn-success');
+
+Array.prototype.forEach.call(btnView, button => {
+  let reduceCard = button.parentNode.parentNode.parentNode.parentNode.firstChild.nextElementSibling;
+  let removeCardText = button.parentNode.parentNode.parentNode.firstChild.nextElementSibling;
+
+  var onBtnView = function() {
+    reduceCard.style.width = "20%"; 
+    reduceCard.style.height = "20%";
+    removeCardText.style.display = "none";
+    button.addEventListener('mouseover', onBtnView2);
+    button.removeEventListener('mouseover', onBtnView);
+  }
+  var onBtnView2 = function() {
+    reduceCard.style.width = "100%"; 
+    reduceCard.style.height = "100%";
+    removeCardText.style.display = '';
+    button.addEventListener('mouseover', onBtnView);
+    button.removeEventListener('mouseover', onBtnView2);
+  }
+  button.addEventListener('mouseover', onBtnView); 
 }
-btnView.addEventListener('mouseover', onBtnView); 
+); 
 
 
+//
