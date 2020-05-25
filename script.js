@@ -105,9 +105,7 @@ Array.prototype.forEach.call(btnView, button => {
 
 //Fonctionnalité 7
 let btnLoop = document.getElementsByClassName('btn btn-secondary my-2')[0];
-console.log(btnLoop)
 let parentCard = document.getElementsByClassName('row')[1];
-console.log(parentCard)
 
 let onBtnLoopClick = function() {
   parentCard.insertBefore(parentCard.lastElementChild, parentCard.firstElementChild)
@@ -127,3 +125,30 @@ btnLoopReverse.addEventListener('click', onBtnLoopReverseClick);
 
 
 //Fonctionnalité 9
+let logoNav = document.getElementsByClassName("navbar-brand d-flex align-items-center")[0];
+let logoText = document.getElementsByTagName("strong")[0];
+let navBarChange = document.getElementsByClassName("navbar navbar-dark bg-dark box-shadow")[0];
+let mainChange = document.getElementsByTagName("main")[0];
+let footerChange = document.getElementsByTagName('footer')[0];
+let body = document.body
+
+let onLogoNav = function (e) {
+  if (e.key === "a") {
+    body.className = ''
+    body.classList.add("col-4");
+    body.style.padding = "0px 0px 0px 0px";
+  } else if (e.key === "y") {
+    body.className = ''
+    body.classList.add("col-4");
+    body.classList.add("offset-md-4");
+    body.style.padding = "0px 0px 0px 0px";
+  } else if (e.key === "p") {
+    body.className = ''
+    body.classList.add("offset-md-8");
+    body.style.padding = "0px 0px 0px 0px";
+  } else if (e.key === "b") {
+    body.className = ''
+  }
+  
+}
+logoNav.addEventListener('keypress', onLogoNav)
